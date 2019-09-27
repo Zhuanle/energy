@@ -86,9 +86,6 @@
     from category
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultType="com.xiyou.energy.pojo.Category">
-  	select * from category
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from category
     where id = #{id,jdbcType=INTEGER}

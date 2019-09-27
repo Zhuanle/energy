@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.xiyou.energy.pojo.Role;
 import com.xiyou.energy.pojo.User;
-import com.xiyou.energy.util.UserRole;
+import com.xiyou.energy.util.UserRoleVo;
 
 public interface RoleService {
 	public Set<String> listRoleNames(String userName);

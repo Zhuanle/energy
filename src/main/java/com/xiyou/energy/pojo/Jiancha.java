@@ -2,14 +2,12 @@ package com.xiyou.energy.pojo;
 
 import java.util.Date;
 
-public class Check {
+public class Jiancha {
     private Integer id;
 
     private Integer eid;
 
     private Date createtime;
-
-    private Integer uid;
 
     private Byte percent;
 
@@ -35,14 +33,6 @@ public class Check {
 
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
-    }
-
-    public Integer getUid() {
-        return uid;
-    }
-
-    public void setUid(Integer uid) {
-        this.uid = uid;
     }
 
     public Byte getPercent() {

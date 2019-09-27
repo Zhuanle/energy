@@ -26,6 +26,10 @@ public class CustomerController {
 	@RequestMapping("/getMe")
 	public Result getUserById(int id) {
 		User user = userService.get(id);
+		user.setPassword(null);
+		user.setSalt(null);
 		return Result.success(user);
 	}
+	
+	
 }

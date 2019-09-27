@@ -98,9 +98,10 @@ public class PermissionServiceImpl implements PermissionService {
 	@Override
 	public boolean needInterceptor(String requestURI) {
 		List<Permission> ps = list();
-		System.out.println(requestURI);
+		
 		for (Permission p : ps) {
 			if (requestURI.contains(p.getUrl()))
+				System.out.println("111111" + requestURI.contains(p.getUrl()));
 				return true;
 		}
 		return false;

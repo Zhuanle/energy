@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.xiyou.energy.mapper.UserMapper;
+import com.xiyou.energy.mapper.UserRoleMapper;
 import com.xiyou.energy.pojo.User;
 import com.xiyou.energy.pojo.UserExample;
+import com.xiyou.energy.pojo.UserRole;
+import com.xiyou.energy.pojo.UserRoleExample;
 import com.xiyou.energy.service.UserRoleService;
 import com.xiyou.energy.service.UserService;
 import com.xiyou.energy.util.Result;
@@ -21,6 +24,8 @@ public class UserServiceImpl implements UserService {
 	UserMapper userMapper;
 	@Autowired
 	UserRoleService userRoleService;
+	@Autowired
+	UserRoleMapper userRoleMapper;
 
 	@Override
 	public String getPassword(String name) {
@@ -54,7 +59,6 @@ public class UserServiceImpl implements UserService {
 		else{
 			userMapper.insertSelective(u);
 			List<User> userList = userMapper.selectByExample(example);
-			System.out.println(userList.get(0).getId());
 			userRoleService.addUserRole(userList.get(0).getId());
 			return Result.success();
 		}
@@ -63,8 +67,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void delete(int id) {
-		userMapper.deleteByPrimaryKey(id);
 		userRoleService.deleteByUser(id);
+		userMapper.deleteByPrimaryKey(id);
+		
 	}
 
 	@Override
@@ -82,13 +87,27 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> list() {
-		return userMapper.selectList();
+		UserExample example = new UserExample();
+		example.setOrderByClause("id desc");
+		return userMapper.selectByExample(example);
 
 	}
 
 	@Override
 	public void editService(User user) {
 		userMapper.updateByPrimaryKey(user);
+	}
+
+	@Override
+	public void editUser(User user, int rid) {
+		// TODO Auto-generated method stub
+		userMapper.updateByPrimaryKeySelective(user);
+		UserRole userRole = new UserRole();
+		userRole.setUid(user.getId());
+		userRole.setRid(rid);
+		UserRoleExample example = new UserRoleExample();
+		example.createCriteria().andUidEqualTo(user.getId());
+		userRoleMapper.updateByExampleSelective(userRole, example);
 	}
 
 }

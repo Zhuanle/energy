@@ -57,4 +57,11 @@ public class RoleController {
 		roleService.delete(id);
 		return Result.success();
 	}
+	
+	//对角色授权
+	@RequestMapping("/updateRolePermission")
+	public Result updateRolePermission(Role role,int[] permissionIds){
+		rolePermissionService.setPermissions(role, permissionIds);
+		return Result.success();
+	}
 }

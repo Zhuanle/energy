@@ -9,7 +9,7 @@ import com.xiyou.energy.pojo.User;
  * @author zhanghuanle
  * 用户信息展示
  */
-public class UserRole {
+public class UserRoleVo {
 
 	private User user;
 	private List<Role> role;

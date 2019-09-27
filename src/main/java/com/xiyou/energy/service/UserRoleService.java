@@ -1,7 +1,7 @@
 package com.xiyou.energy.service;
 
 import com.xiyou.energy.pojo.User;
-import com.xiyou.energy.util.UserRole;
+import com.xiyou.energy.util.UserRoleVo;
 
 public interface UserRoleService {
 

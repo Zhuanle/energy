@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xiyou.energy.pojo.Permission;
 import com.xiyou.energy.service.PermissionService;
+import com.xiyou.energy.service.RolePermissionService;
 import com.xiyou.energy.util.Result;
 
 @RestController
@@ -17,6 +18,8 @@ public class PermissionController {
 
 	@Autowired
 	private PermissionService permissionService;
+	@Autowired
+	private RolePermissionService rolePermissionService;
 	
 	//获得所有权限列表
 	@RequestMapping("/listPermission")
@@ -42,6 +45,7 @@ public class PermissionController {
 	//删除权限
 	@RequestMapping("/deletePermission")
 	public Result deletePermission(int id){
+		rolePermissionService.deleteByPermission(id);
 		permissionService.delete(id);
 		return Result.success();
 	}

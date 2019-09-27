@@ -1,10 +1,14 @@
 package com.xiyou.energy.mapper;
 
-import com.xiyou.energy.pojo.User;
-import com.xiyou.energy.pojo.UserExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.xiyou.energy.pojo.User;
+import com.xiyou.energy.pojo.UserExample;
+
+@Mapper
 public interface UserMapper {
     int countByExample(UserExample example);
 
@@ -27,6 +31,4 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-
-	List<User> selectList();
 }

@@ -5,7 +5,6 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="eid" property="eid" jdbcType="INTEGER" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
-    <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
     <result column="count" property="count" jdbcType="INTEGER" />
@@ -69,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, eid, pid, uid, type, createTime, count
+    id, eid, pid, type, createTime, count
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiyou.energy.pojo.FeedExample" >
     select
@@ -103,11 +102,11 @@
   </delete>
   <insert id="insert" parameterType="com.xiyou.energy.pojo.Feed" >
     insert into feed (id, eid, pid, 
-      uid, type, createTime, 
-      count)
+      type, createTime, count
+      )
     values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
-      #{uid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{count,jdbcType=INTEGER})
+      #{type,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xiyou.energy.pojo.Feed" >
     insert into feed
@@ -120,9 +119,6 @@
       </if>
       <if test="pid != null" >
         pid,
-      </if>
-      <if test="uid != null" >
-        uid,
       </if>
       <if test="type != null" >
         type,
@@ -143,9 +139,6 @@
       </if>
       <if test="pid != null" >
         #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="uid != null" >
-        #{uid,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
@@ -176,9 +169,6 @@
       <if test="record.pid != null" >
         pid = #{record.pid,jdbcType=INTEGER},
       </if>
-      <if test="record.uid != null" >
-        uid = #{record.uid,jdbcType=INTEGER},
-      </if>
       <if test="record.type != null" >
         type = #{record.type,jdbcType=INTEGER},
       </if>
@@ -198,7 +188,6 @@
     set id = #{record.id,jdbcType=INTEGER},
       eid = #{record.eid,jdbcType=INTEGER},
       pid = #{record.pid,jdbcType=INTEGER},
-      uid = #{record.uid,jdbcType=INTEGER},
       type = #{record.type,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       count = #{record.count,jdbcType=INTEGER}
@@ -214,9 +203,6 @@
       </if>
       <if test="pid != null" >
         pid = #{pid,jdbcType=INTEGER},
-      </if>
-      <if test="uid != null" >
-        uid = #{uid,jdbcType=INTEGER},
       </if>
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
@@ -234,7 +220,6 @@
     update feed
     set eid = #{eid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
-      uid = #{uid,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       count = #{count,jdbcType=INTEGER}

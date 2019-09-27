@@ -1,10 +1,14 @@
 package com.xiyou.energy.mapper;
 
-import com.xiyou.energy.pojo.Permission;
-import com.xiyou.energy.pojo.PermissionExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.xiyou.energy.pojo.Permission;
+import com.xiyou.energy.pojo.PermissionExample;
+
+@Mapper
 public interface PermissionMapper {
     int countByExample(PermissionExample example);
 

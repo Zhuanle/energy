@@ -22,4 +22,6 @@ public interface UserService {
 
 	public void editService(User user);
 
+	public void editUser(User user, int rid);
+
 }

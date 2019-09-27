@@ -1,6 +1,7 @@
 package com.xiyou.energy.configuration;
 
 import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -49,23 +50,21 @@ public class ShiroConfiguration {
 		// 设置SecurityManager
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		// 如果不设置默认自动寻找web工程根目录下的“/login.jsp”也页面
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		// 登录成功后要彖传的链接
-		shiroFilterFactoryBean.setSuccessUrl("/index");
-		// 未授权页面
-		shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");
+//		shiroFilterFactoryBean.setLoginUrl("/login");
+//		// 登录成功后要彖传的链接
+//		shiroFilterFactoryBean.setSuccessUrl("/index");
+//		// 未授权页面
+//		shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorized");
 		// 拦截器
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 		// 自定义拦截器
 		Map<String, Filter> customisedFilter = new HashMap<>();
 		customisedFilter.put("url", getURLPathMatchingFilter());
-
 		// 配置映射关系
 		filterChainDefinitionMap.put("/login", "anon");
-		filterChainDefinitionMap.put("/index", "anon");
-		filterChainDefinitionMap.put("/addUser", "anon");
-		filterChainDefinitionMap.put("/static/**", "anon");
-		filterChainDefinitionMap.put("/config/**", "anon");
+		filterChainDefinitionMap.put("/register", "anon");
+		filterChainDefinitionMap.put("/getMe", "anon");
+		filterChainDefinitionMap.put("/customer", "anon");
 		filterChainDefinitionMap.put("/doLogout", "logout");
 		filterChainDefinitionMap.put("/**", "url");
 		shiroFilterFactoryBean.setFilters(customisedFilter);

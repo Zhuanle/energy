@@ -1,10 +1,14 @@
 package com.xiyou.energy.mapper;
 
-import com.xiyou.energy.pojo.Product;
-import com.xiyou.energy.pojo.ProductExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.xiyou.energy.pojo.Product;
+import com.xiyou.energy.pojo.ProductExample;
+
+@Mapper
 public interface ProductMapper {
     int countByExample(ProductExample example);
 

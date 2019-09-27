@@ -1,10 +1,14 @@
 package com.xiyou.energy.mapper;
 
-import com.xiyou.energy.pojo.Feed;
-import com.xiyou.energy.pojo.FeedExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.xiyou.energy.pojo.Feed;
+import com.xiyou.energy.pojo.FeedExample;
+
+@Mapper
 public interface FeedMapper {
     int countByExample(FeedExample example);
 

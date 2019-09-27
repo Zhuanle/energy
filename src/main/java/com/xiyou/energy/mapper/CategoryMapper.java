@@ -1,10 +1,14 @@
 package com.xiyou.energy.mapper;
 
-import com.xiyou.energy.pojo.Category;
-import com.xiyou.energy.pojo.CategoryExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.xiyou.energy.pojo.Category;
+import com.xiyou.energy.pojo.CategoryExample;
+
+@Mapper
 public interface CategoryMapper {
     int countByExample(CategoryExample example);
 
@@ -27,6 +31,4 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
-    
-    List<Category> selectAll();
 }

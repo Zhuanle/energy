@@ -10,10 +10,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xiyou.energy.pojo.User;
-import com.xiyou.energy.service.UserRoleService;
 import com.xiyou.energy.service.UserService;
 import com.xiyou.energy.util.Result;
 
@@ -30,7 +31,7 @@ public class LoginController {
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(user.getName(), user.getPassword());
 		try {
-			//将用户数据token传递到Realm中进行验证
+			// 将用户数据token传递到Realm中进行验证
 			subject.login(token);
 			Session session = subject.getSession();
 			session.setAttribute("subject", subject);
@@ -45,7 +46,7 @@ public class LoginController {
 	}
 
 	// 用户注册
-	@PostMapping("/addUser")
+	@RequestMapping(value="/register" ,method=RequestMethod.POST)
 	public Result add(@RequestBody User user) {
 		String salt = new SecureRandomNumberGenerator().nextBytes().toString();
 		// 加密次数
@@ -54,8 +55,8 @@ public class LoginController {
 		String encodedPassword = new SimpleHash(algorithmName, user.getPassword(), salt, times).toString();
 		user.setSalt(salt);
 		user.setPassword(encodedPassword);
-		return userService.add(user);
+		Result result = userService.add(user);
+		return result;
 	}
-	
 
 }

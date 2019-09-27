@@ -56,6 +56,9 @@ public class DatabaseRealm extends AuthorizingRealm {
 		String userName = token.getPrincipal().toString();
 		// 获取数据库中的密码
 		User user = userService.getByName(userName);
+		if(user == null){
+			throw new AuthenticationException();
+		}
 		String passwordInDB = user.getPassword();
 		String salt = user.getSalt();
 		// 认证信息里存放账号密码, getName() 是当前Realm的继承方法,通常返回当前类名 :databaseRealm

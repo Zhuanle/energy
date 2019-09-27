@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiyou.energy.mapper.CheckMapper" >
-  <resultMap id="BaseResultMap" type="com.xiyou.energy.pojo.Check" >
+<mapper namespace="com.xiyou.energy.mapper.JianchaMapper" >
+  <resultMap id="BaseResultMap" type="com.xiyou.energy.pojo.Jiancha" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="eid" property="eid" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="uid" property="uid" jdbcType="INTEGER" />
     <result column="percent" property="percent" jdbcType="TINYINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, eid, createTime, uid, percent
+    id, eid, createTime, percent
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiyou.energy.pojo.CheckExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xiyou.energy.pojo.JianchaExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from check
+    from jiancha
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,27 +85,27 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from check
+    from jiancha
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from check
+    delete from jiancha
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xiyou.energy.pojo.CheckExample" >
-    delete from check
+  <delete id="deleteByExample" parameterType="com.xiyou.energy.pojo.JianchaExample" >
+    delete from jiancha
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xiyou.energy.pojo.Check" >
-    insert into check (id, eid, createTime, 
-      uid, percent)
+  <insert id="insert" parameterType="com.xiyou.energy.pojo.Jiancha" >
+    insert into jiancha (id, eid, createTime, 
+      percent)
     values (#{id,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{uid,jdbcType=INTEGER}, #{percent,jdbcType=TINYINT})
+      #{percent,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.xiyou.energy.pojo.Check" >
-    insert into check
+  <insert id="insertSelective" parameterType="com.xiyou.energy.pojo.Jiancha" >
+    insert into jiancha
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -116,9 +115,6 @@
       </if>
       <if test="createtime != null" >
         createTime,
-      </if>
-      <if test="uid != null" >
-        uid,
       </if>
       <if test="percent != null" >
         percent,
@@ -134,22 +130,19 @@
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="uid != null" >
-        #{uid,jdbcType=INTEGER},
-      </if>
       <if test="percent != null" >
         #{percent,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xiyou.energy.pojo.CheckExample" resultType="java.lang.Integer" >
-    select count(*) from check
+  <select id="countByExample" parameterType="com.xiyou.energy.pojo.JianchaExample" resultType="java.lang.Integer" >
+    select count(*) from jiancha
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update check
+    update jiancha
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -160,9 +153,6 @@
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.uid != null" >
-        uid = #{record.uid,jdbcType=INTEGER},
-      </if>
       <if test="record.percent != null" >
         percent = #{record.percent,jdbcType=TINYINT},
       </if>
@@ -172,18 +162,17 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update check
+    update jiancha
     set id = #{record.id,jdbcType=INTEGER},
       eid = #{record.eid,jdbcType=INTEGER},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      uid = #{record.uid,jdbcType=INTEGER},
       percent = #{record.percent,jdbcType=TINYINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xiyou.energy.pojo.Check" >
-    update check
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiyou.energy.pojo.Jiancha" >
+    update jiancha
     <set >
       <if test="eid != null" >
         eid = #{eid,jdbcType=INTEGER},
@@ -191,20 +180,16 @@
       <if test="createtime != null" >
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="uid != null" >
-        uid = #{uid,jdbcType=INTEGER},
-      </if>
       <if test="percent != null" >
         percent = #{percent,jdbcType=TINYINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xiyou.energy.pojo.Check" >
-    update check
+  <update id="updateByPrimaryKey" parameterType="com.xiyou.energy.pojo.Jiancha" >
+    update jiancha
     set eid = #{eid,jdbcType=INTEGER},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      uid = #{uid,jdbcType=INTEGER},
       percent = #{percent,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>

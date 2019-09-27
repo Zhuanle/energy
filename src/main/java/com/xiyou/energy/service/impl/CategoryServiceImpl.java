@@ -38,7 +38,9 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Category> listCategory() {
 		// TODO Auto-generated method stub
-		List<Category> listCategory = categoryMapper.selectAll();
+		CategoryExample example = new CategoryExample();
+		example.setOrderByClause("id desc");
+		List<Category> listCategory = categoryMapper.selectByExample(example);
 		return listCategory;
 	}
 
